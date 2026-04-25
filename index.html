@@ -1,222 +1,72 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>NanoLink AI - Smart Link Platform</title>
-
-  <!-- Google Font -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500;700&display=swap" rel="stylesheet">
-
-  <!-- Icons -->
-  <script src="https://kit.fontawesome.com/4a3b1f73a2.js" crossorigin="anonymous"></script>
-
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Inter', sans-serif;
-      background: #0f172a;
-      color: white;
-    }
-
-    header {
-      display: flex;
-      justify-content: space-between;
-      padding: 20px 40px;
-      align-items: center;
-    }
-
-    header h2 {
-      color: #22c55e;
-    }
-
-    nav a {
-      margin-left: 20px;
-      text-decoration: none;
-      color: #ccc;
-    }
-
-    .hero {
-      text-align: center;
-      padding: 80px 20px;
-    }
-
-    .hero h1 {
-      font-size: 50px;
-    }
-
-    .hero input {
-      padding: 12px;
-      width: 300px;
-      border-radius: 8px;
-      border: none;
-      margin-top: 20px;
-    }
-
-    .hero button {
-      padding: 12px 20px;
-      background: #22c55e;
-      border: none;
-      border-radius: 8px;
-      color: black;
-      font-weight: bold;
-      cursor: pointer;
-    }
-
-    .features {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px,1fr));
-      gap: 20px;
-      padding: 40px;
-    }
-
-    .card {
-      background: #1e293b;
-      padding: 20px;
-      border-radius: 12px;
-      text-align: center;
-    }
-
-    .video {
-      text-align: center;
-      padding: 40px;
-    }
-
-    iframe {
-      width: 80%;
-      height: 400px;
-      border-radius: 12px;
-    }
-
-    .pricing {
-      display: flex;
-      justify-content: center;
-      gap: 20px;
-      padding: 50px;
-      flex-wrap: wrap;
-    }
-
-    .plan {
-      background: #1e293b;
-      padding: 20px;
-      border-radius: 12px;
-      width: 250px;
-      text-align: center;
-    }
-
-    .plan h3 {
-      color: #22c55e;
-    }
-
-    footer {
-      text-align: center;
-      padding: 20px;
-      background: #020617;
-    }
-
-    .social i {
-      margin: 10px;
-      font-size: 20px;
-      cursor: pointer;
-    }
-  </style>
-</head>
-
-<body>
-
-<header>
-  <h2>NanoLink AI</h2>
-  <nav>
-    <a href="#">Home</a>
-    <a href="#">Features</a>
-    <a href="#">Pricing</a>
-  </nav>
-</header>
-
-<section class="hero">
-  <h1>Shorten, Track & Monetize Links with AI</h1>
-  <p>Smart links for marketers, creators & businesses</p>
-
-  <input placeholder="Paste your URL..." />
-  <button>Shorten</button>
-</section>
-
-<!-- FEATURES -->
-<section class="features">
-  <div class="card">
-    <img src="https://picsum.photos/200" />
-    <h3>Link Shortener</h3>
-    <p>Create clean, branded links instantly</p>
-  </div>
-
-  <div class="card">
-    <img src="https://picsum.photos/201" />
-    <h3>Analytics</h3>
-    <p>Track clicks, location, devices</p>
-  </div>
-
-  <div class="card">
-    <img src="https://picsum.photos/202" />
-    <h3>QR Codes</h3>
-    <p>Generate QR codes for offline sharing</p>
-  </div>
-
-  <div class="card">
-    <img src="https://picsum.photos/203" />
-    <h3>AI Insights</h3>
-    <p>Get smart recommendations</p>
+ily="Arial" font-size="14" font-weight="bold" fill="#6772e5">stripe</text></svg>
+    Payments secured by Stripe · SSL Encrypted · Accepted Worldwide
   </div>
 </section>
 
-<!-- VIDEO -->
-<section class="video">
-  <h2>Watch How It Works</h2>
-  <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ"></iframe>
+<!-- STRIPE PAYMENT MODAL -->
+<div class="modal-overlay" id="payModal">
+  <div class="modal">
+    <button class="modal-close" onclick="closePayment()">✕</button>
+    <div id="pay-success" class="modal-success">
+      <div class="check">✅</div>
+      <h4>Payment Successful!</h4>
+      <p>Prof. Jabin's team will contact you within 24 hours to schedule your session.</p>
+      <p style="margin-top:8px;font-size:.8rem;color:var(--ink-muted)">WhatsApp: +92 322 4468644</p>
+    </div>
+    <div id="pay-form">
+      <h3 id="modal-plan-name">Session</h3>
+      <div class="modal-plan" id="modal-plan-desc">60-minute private session</div>
+      <div class="modal-price" id="modal-price">$75</div>
+      <input class="modal-input" type="text" id="pay-name" placeholder="Your Full Name">
+      <input class="modal-input" type="email" id="pay-email" placeholder="Email Address">
+      <input class="modal-input" type="tel" id="pay-phone" placeholder="WhatsApp Number">
+      <div id="card-element"></div>
+      <div class="modal-error" id="pay-error"></div>
+      <button class="btn-primary" style="width:100%;justify-content:center" id="pay-btn" onclick="processPayment()">
+        🔒 Pay Securely Now
+      </button>
+      <p class="modal-note">🔒 256-bit SSL encryption · Powered by Stripe · Your card details are never stored</p>
+    </div>
+  </div>
+</div>
+
+<!-- YOUTUBE -->
+<section class="section-pad yt-section" id="videos">
+  <div class="yt-grid">
+    <div>
+      <div class="yt-embed">
+        <iframe src="https://www.youtube.com/embed/eb3-dWfB03g?rel=0&modestbranding=1"
+          title="Learn life skills from Prof Mussarat Jabin"
+          allow="accelerometer;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture"
+          allowfullscreen></iframe>
+      </div>
+    </div>
+    <div class="yt-info">
+      <div class="yt-badge">▶ Featured on YouTube</div>
+      <h3>Learn Life Skills from Prof Mussarat Jabin</h3>
+      <p>A deeply inspiring session where Nano shares timeless life habits, psychological tools, and the warm wisdom that has made her a household name across Pakistan — in Urdu, for every Pakistani heart.</p>
+      <a href="https://www.youtube.com/@nanokidiary3873" target="_blank" class="btn-primary">🎬 Visit Full YouTube Channel →</a>
+    </div>
+  </div>
+  <div class="yt-cards">
+    <a href="https://www.youtube.com/watch?v=L4myUaT33ho" target="_blank" class="yt-card">
+      <div class="yt-thumb"><img src="https://img.youtube.com/vi/L4myUaT33ho/hqdefault.jpg" alt="We make our own world"><div class="yt-play">▶</div></div>
+      <div class="yt-card-body"><span>Morals &amp; Ethics</span><h4>We Make Our Own World</h4></div>
+    </a>
+    <a href="https://www.youtube.com/watch?v=ayaX8dh4szI" target="_blank" class="yt-card">
+      <div class="yt-thumb"><img src="https://img.youtube.com/vi/ayaX8dh4szI/hqdefault.jpg" alt="Daily Routine"><div class="yt-play">▶</div></div>
+      <div class="yt-card-body"><span>Daily Life</span><h4>Daily Routine Activities — Prof. Jabin</h4></div>
+    </a>
+    <a href="https://www.youtube.com/@nanokidiary3873" target="_blank" class="yt-card yt-sub-card">
+      <div class="yt-play-big">▶</div>
+      <h4>More Videos</h4>
+      <p>Vlogs, psychology talks, kitchen stories &amp; more</p>
+      <div class="yt-sub-btn">Subscribe Free</div>
+    </a>
+  </div>
 </section>
 
-<!-- PRICING -->
-<section class="pricing">
-  <div class="plan">
-    <h3>Free</h3>
-    <p>$0</p>
-    <p>20 Links</p>
-    <button>Start Free</button>
-  </div>
-
-  <div class="plan">
-    <h3>Starter</h3>
-    <p>$9/mo</p>
-    <p>500 Links + QR</p>
-    <button>Buy</button>
-  </div>
-
-  <div class="plan">
-    <h3>Pro</h3>
-    <p>$19/mo</p>
-    <p>Unlimited + Analytics</p>
-    <button>Buy</button>
-  </div>
-
-  <div class="plan">
-    <h3>Business</h3>
-    <p>$49/mo</p>
-    <p>Custom Domain</p>
-    <button>Buy</button>
-  </div>
-</section>
-
-<!-- FOOTER -->
-<footer>
-  <h3>Follow Us</h3>
-  <div class="social">
-    <i class="fab fa-facebook"></i>
-    <i class="fab fa-twitter"></i>
-    <i class="fab fa-linkedin"></i>
-    <i class="fab fa-youtube"></i>
-  </div>
-
-  <p>© 2026 NanoLink AI. All rights reserved.</p>
-</footer>
-
-</body>
-</html>
+<!-- GALLERY -->
+<section class="section-pad gallery-bg" id="gallery">
+  <span class="sec-label">Life in Pictures</span>
+  <h2 class="sec-title">Nano's World — Moments That Matter</h2>
